@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-canvas text-ink antialiased; font-feature-settings: "tnum" 1, "cv11" 1; }
+  input, select, textarea { @apply text-ink; }
+}
+
+@layer components {
+  .card { @apply bg-surface rounded-card shadow-card border border-line/70 p-5; }
+  .label { @apply text-xs font-medium uppercase tracking-wide text-ink-muted; }
+  .input {
+    @apply w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[15px] outline-none
+           transition focus:border-sage-500 focus:ring-2 focus:ring-sage-100 disabled:bg-canvas;
+  }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+                active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-ink/90; }
+  .btn-sage { @apply btn bg-sage-600 text-white hover:bg-sage-700; }
+  .btn-ghost { @apply btn bg-transparent text-ink-soft hover:bg-line/60; }
+  .btn-outline { @apply btn border border-line bg-white text-ink hover:bg-canvas; }
+  .btn-danger { @apply btn bg-transparent text-blush-600 hover:bg-blush-50; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium; }
+}
+
+/* Hide number spinners: they're fiddly on mobile */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
