@@ -34,7 +34,7 @@ powerlifting-coach/
 
 ## Run it locally
 
-You need **Python 3.11–3.14** and **Node 20+**.
+You need **Python 3.11 or newer** (tested on 3.11–3.15) and **Node 20+**. If `python3 --version` shows an older version (common with Anaconda), point the script at the new one, e.g. `PYTHON=python3.15 ./start.sh`.
 
 **Quickest (one terminal, macOS/Linux):** `./start.sh` from the project folder. Ctrl+C stops both servers.
 

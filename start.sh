@@ -15,6 +15,15 @@ command -v npm >/dev/null || fail "npm not found. Install Node.js 20+ from https
 
 # ---- 2. Backend packages (reinstalls whenever requirements change or a past install failed) ----
 cd "$ROOT/backend"
+# Rebuild the virtual environment if it was made with a different Python (e.g. an old 3.9).
+WANT=$("$PY" -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+if [ -d .venv ]; then
+  HAVE=$(.venv/bin/python -c 'import sys; print("%d.%d" % sys.version_info[:2])' 2>/dev/null || echo none)
+  if [ "$HAVE" != "$WANT" ]; then
+    echo "▶ Rebuilding backend/.venv for Python $WANT (it was built with $HAVE)…"
+    rm -rf .venv
+  fi
+fi
 STAMP=.venv/.installed-$(cat requirements.txt requirements-dev.txt | cksum | cut -d' ' -f1)
 if [ ! -f "$STAMP" ]; then
   echo "▶ Installing backend packages (first run takes a minute)…"
