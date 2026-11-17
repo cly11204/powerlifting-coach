@@ -34,7 +34,7 @@ powerlifting-coach/
 
 ## Run it locally
 
-You need **Python 3.11+** and **Node 20+**.
+You need **Python 3.11–3.14** and **Node 20+**.
 
 **Quickest (one terminal, macOS/Linux):** `./start.sh` from the project folder. Ctrl+C stops both servers.
 
